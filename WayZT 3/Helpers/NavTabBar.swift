@@ -7,29 +7,35 @@
 
 import SwiftUI
 
+//
+//  NavTabBarRegular.swift
+//  My Meeple Companion
+//
+//  Created by Ultiimate Dog on 07/03/25.
+//
+
+import SwiftUI
+
 struct NavTabBar: View {
     // MARK: - ATTRIBUTES
     @Binding var selected: Tab
+    let bgColor: Color = .init(white: 0.9)
     
     // MARK: - BODY
     var body: some View {
         VStack {
             Spacer()
-            ZStack {
-                RoundedRectangle(cornerRadius: 30)
-                    .fill(.mainBackground)
-                    .strokeBorder(.accent, lineWidth: 0)
-                    .frame(height: 50)
-                    .shadow(color: .mainBackground.opacity(0.4),
-                            radius: 12, x: 0, y: 10)
-                
-                
-                
-                TabsLayoutView(selectedTab: $selected)
-            }
-            .frame(maxWidth: 400)
-            .padding(.horizontal)
-            .padding(.bottom, 10)
+            TabsLayoutView(selectedTab: $selected)
+                .padding()
+                .background(
+                    Capsule()
+                        .fill(.mainBackground)
+                        .frame(height: 55)
+                        .shadow(color: .mainBackground.opacity(0.5), radius: 5)
+                )
+                .frame(maxWidth: 400)
+                .padding(.horizontal)
+                .padding(.vertical, 10)
         }//: VSTACK
     }
 }
@@ -41,53 +47,69 @@ fileprivate struct TabsLayoutView: View {
     
     var body: some View {
         HStack {
-            Spacer(minLength: 0)
-            
             ForEach(Tab.allCases) { tab in
                 TabButton(tab: tab, selectedTab: $selectedTab, namespace: namespace)
-                    .frame(width: 65, height: 65, alignment: .center)
-                
-                Spacer(minLength: 0)
             }
         }
     }
     
-    // MARK: - BUTTON
     private struct TabButton: View {
         // MARK: - ATTRIBUTES
         let tab: Tab
         @Binding var selectedTab: Tab
         var namespace: Namespace.ID
+        @State private var selectedOffset: CGFloat = 0
+        @State private var rotationAngle: CGFloat = 0
         
         // MARK: - BODY
         var body: some View {
             Button {
-                withAnimation {
+                withAnimation(.easeInOut) {
                     selectedTab = tab
+                }
+                
+                selectedOffset = -60
+                if tab < selectedTab {
+                    rotationAngle += 360
+                } else {
+                    rotationAngle -= 360
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    selectedOffset = 0
+                    if tab < selectedTab {
+                        rotationAngle += 720
+                    } else {
+                        rotationAngle -= 720
+                    }
                 }
             } label: {
                 ZStack {
                     if isSelected {
-                        Circle()
-                            .fill(.mainBackground)
-                            .shadow(color: .mainBackground.opacity(0.2),
-                                    radius: 5)
-                            .background {
-                                Circle()
-                                    .stroke(lineWidth: 5)
-                                    .foregroundColor(.accent)
-                            }
-                            .offset(y: -20)
+                        Capsule()
+                            .fill(.accent)
                             .matchedGeometryEffect(id: "Selected Tab", in: namespace)
-                            .animation(.spring(), value: selectedTab)
+                            .frame(height: 40)
                     }
-                    
-                    Image(systemName: tab.rawValue)
-                        .font(.system(size: 23, weight: .semibold, design: .rounded))
-                        .foregroundColor(.second)
-                        .scaleEffect(isSelected ? 1 : 0.8)
-                        .offset(y: isSelected ? -20 : 0)
-                        .animation(isSelected ? .spring(response: 0.5, dampingFraction: 0.3, blendDuration: 1) : .spring(), value: selectedTab)
+                    HStack(spacing: 10) {
+                        Image(systemName: tab.image)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .foregroundColor(.second)
+                            .rotationEffect(.degrees(rotationAngle))
+                            .scaleEffect(isSelected ? 1 : 0.9)
+                            .animation(.easeInOut, value: rotationAngle)
+                            .padding(.leading, isSelected ? 20 : 0)
+                            .padding(.horizontal, selectedTab != tab ? 10 : 0)
+                            .offset(y: selectedOffset)
+                            .animation(.default, value: selectedOffset)
+                        
+                        if isSelected {
+                            Text(tab.tabName)
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                .foregroundColor(.second)
+                                .padding(.trailing, 20)
+                        }
+                    }
+                    .padding(.vertical, 10)
                 }
             }
             .buttonStyle(.plain)
@@ -98,6 +120,7 @@ fileprivate struct TabsLayoutView: View {
         }
     }
 }
+
 
 // MARK: - PREVIEW
 #Preview {

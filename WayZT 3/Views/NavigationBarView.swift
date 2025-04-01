@@ -22,12 +22,6 @@ struct NavigationBarView: View {
                 CameraView()
                     .tag(Tab.Camera)
                     
-                FootprintView()
-                    .tag(Tab.Footprint)
-                
-                ArticlesView()
-                    .tag(Tab.Articles)
-                    
                 ProfileView()
                     .tag(Tab.Profile)
                 
@@ -44,27 +38,36 @@ struct NavigationBarView: View {
 }
 
 // MARK: - TABS
-enum Tab: String, CaseIterable, Identifiable {
-    internal var id: String { rawValue }
+enum Tab: Int, CaseIterable, Identifiable {
+    static func < (lhs: Tab, rhs: Tab) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
     
-    case Profile = "person.fill"
-    case Footprint = "shoeprints.fill"
-    case Camera = "camera.fill"
-    case Maps = "map.fill"
-    case Articles = "book.pages.fill"
+    internal var id: Int { rawValue }
+    
+    case Profile
+    case Camera
+    case Maps
         
     var tabName: String {
         switch self {
         case .Profile:
-            return "Profile"
-        case .Footprint:
-            return "Footprint"
+            return "Mi viejo"
         case .Camera:
-            return "Camera"
+            return "Camaron"
         case .Maps:
-            return "Map"
-        case .Articles:
-            return "Articles"
+            return "Mapaches"
+        }
+    }
+    
+    var image: String {
+        switch self {
+        case .Maps:
+            return "map.fill"
+        case .Camera:
+            return "camera.fill"
+        case .Profile:
+            return "person.fill"
         }
     }
 }
