@@ -35,16 +35,6 @@ import Observation
     })
 }
 
-struct ColorPalette {
-    let c1 = Color.init(red: 251/255, green: 251/255, blue: 251/255)
-    let c2 = Color.init(red: 162/255, green: 229/255, blue: 164/255)
-    let c3 = Color.init(red: 95/255, green: 223/255, blue: 119/255)
-    let c4 = Color.init(red: 221/255, green: 246/255, blue: 226/255)
-    let c5 = Color.init(red: 119/255, green: 220/255, blue: 137/255)
-    let c6 = Color.init(red: 3/255, green: 54/255, blue: 49/255)
-    let c7 = Color.init(red: 226/255, green: 245/255, blue: 226/255)
-}
-
 // MARK: - GRAB FRAMES
 func continuouslyUpdate() {
     let modelData: ModelData = .shared
