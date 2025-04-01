@@ -68,9 +68,9 @@ fileprivate struct TabsLayoutView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     selectedOffset = 0
                     if tab < selectedTab {
-                        rotationAngle += 720
+                        rotationAngle += 0
                     } else {
-                        rotationAngle -= 720
+                        rotationAngle -= 0
                     }
                 }
             } label: {
