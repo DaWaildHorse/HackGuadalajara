@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pine.png",
+      "filename" : "LEAF 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "pine 1.png",
+      "filename" : "LEAF.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pine 2.png",
+      "filename" : "LEAF 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
