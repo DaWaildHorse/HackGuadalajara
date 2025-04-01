@@ -22,6 +22,7 @@ struct ProfileView: View {
                     .ignoresSafeArea()
                     .offset(x: -160, y: 150)
                     .transition(.offset(x: -50, y: 200))
+                    .blur(radius: changePic ? 2 : 0)
                 
                 Image(.pine)
                     .resizable()
@@ -30,14 +31,17 @@ struct ProfileView: View {
                     .ignoresSafeArea()
                     .offset(x: 160, y: 130)
                     .transition(.offset(x: 100, y: 300))
+                    .blur(radius: changePic ? 2 : 0)
             }
+             
             
             notiButton()
+                .frame(maxWidth: 380)
+                .transaction { $0.animation = nil }
                 .blur(radius: changePic ? 2 : 0)
             
             VStack {
                 profilePic()
-
                 
                 nameAShare()
                     .blur(radius: changePic ? 2 : 0)
@@ -111,7 +115,7 @@ struct ProfileView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35)
-                    .foregroundStyle(.mainBackground)
+                    .foregroundStyle(.second)
             }
             Spacer()
             Button {
@@ -121,7 +125,7 @@ struct ProfileView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 30)
-                    .foregroundStyle(.mainBackground)
+                    .foregroundStyle(.second)
             }
         }
         .padding(.horizontal, 17)

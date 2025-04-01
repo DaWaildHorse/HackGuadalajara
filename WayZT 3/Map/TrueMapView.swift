@@ -19,6 +19,7 @@ struct RecycleMap: View {
     @State private var Destination : MKMapItem?
     @State private var USC = "University of Souther California"
     
+    
     var body: some View {
         
         Map(position: $position , selection: $POISelection){
@@ -104,6 +105,7 @@ struct RecycleMap: View {
         }
     }
 }
+
 struct OrganicMap: View {
     //Declare coordinates of point of interests
     @State private var position : MapCameraPosition = .region(.userRegion)
@@ -197,7 +199,6 @@ struct OrganicMap: View {
         }
     }
 }
-
 
 struct GlassMap: View {
     //Declare coordinates of point of interests
@@ -391,7 +392,6 @@ struct ElectronicsMap: View {
         }
     }
 }
-
 
 
 extension CLLocationCoordinate2D {
