@@ -79,7 +79,7 @@ fileprivate struct TabsLayoutView: View {
                         Capsule()
                             .fill(.accent)
                             .matchedGeometryEffect(id: "Selected Tab", in: namespace)
-                            .frame(width: 50, height: 30)
+                            .frame(width: 58, height: 35)
                     }
                     HStack(spacing: 10) {
                         Image(systemName: tab.image)
