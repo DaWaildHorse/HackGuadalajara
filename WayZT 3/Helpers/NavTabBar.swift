@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-//
-//  NavTabBarRegular.swift
-//  My Meeple Companion
-//
-//  Created by Ultiimate Dog on 07/03/25.
-//
-
-import SwiftUI
-
 struct NavTabBar: View {
     // MARK: - ATTRIBUTES
     @Binding var selected: Tab

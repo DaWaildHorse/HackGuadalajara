@@ -16,10 +16,9 @@ struct CView: View {
     private let dotAppearance = UIPageControl.appearance() //Creación del dot debajo para aparecer
     
     var body: some View {
-        let colorP = ColorPalette()
         ZStack {
             Rectangle()
-                .foregroundColor(colorP.c2)
+                .foregroundColor(.second)
                 .ignoresSafeArea()
             
             VStack {

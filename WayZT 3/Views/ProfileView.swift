@@ -11,7 +11,6 @@ import PhotosUI
 struct ProfileView: View {
     // MARK: - ATTRIBUTE
     var modelData: ModelData = .shared
-    let colorP = ColorPalette()
     
     @State private var anim = false
     @State var changePic = false

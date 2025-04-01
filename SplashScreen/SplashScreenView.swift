@@ -10,7 +10,6 @@ import SwiftUI
 struct SplashScreenView: View {
     
     @Binding var isPresented: Bool
-    let colorP = ColorPalette()
     
     @State private var scale = CGSize(width: 0.8, height: 0.8)
     @State private var ImageOpacity = 1.0
@@ -18,7 +17,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack{
-            Color(colorP.c2).ignoresSafeArea()
+            Color(.second).ignoresSafeArea()
             
             ZStack{
                 Image("logo")
