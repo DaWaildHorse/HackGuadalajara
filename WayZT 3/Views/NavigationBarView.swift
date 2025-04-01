@@ -56,7 +56,7 @@ enum Tab: Int, CaseIterable, Identifiable {
         case .Camera:
             return "Camaron"
         case .Maps:
-            return "Mapaches"
+            return "Mapache"
         }
     }
     

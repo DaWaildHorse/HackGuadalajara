@@ -21,10 +21,10 @@ struct NavTabBar: View {
                 .background(
                     Capsule()
                         .fill(.mainBackground)
-                        .frame(height: 55)
+                        .frame(height: 45)
                         .shadow(color: .mainBackground.opacity(0.5), radius: 5)
                 )
-                .frame(maxWidth: 400)
+                .frame(maxWidth: 300)
                 .padding(.horizontal)
                 .padding(.vertical, 10)
         }//: VSTACK
@@ -79,7 +79,7 @@ fileprivate struct TabsLayoutView: View {
                         Capsule()
                             .fill(.accent)
                             .matchedGeometryEffect(id: "Selected Tab", in: namespace)
-                            .frame(height: 40)
+                            .frame(width: 70, height: 35)
                     }
                     HStack(spacing: 10) {
                         Image(systemName: tab.image)
@@ -88,17 +88,10 @@ fileprivate struct TabsLayoutView: View {
                             .rotationEffect(.degrees(rotationAngle))
                             .scaleEffect(isSelected ? 1 : 0.9)
                             .animation(.easeInOut, value: rotationAngle)
-                            .padding(.leading, isSelected ? 20 : 0)
+                            //.padding(.leading, isSelected ? 20 : 0)
                             .padding(.horizontal, selectedTab != tab ? 10 : 0)
                             .offset(y: selectedOffset)
                             .animation(.default, value: selectedOffset)
-                        
-                        if isSelected {
-                            Text(tab.tabName)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                .foregroundColor(.second)
-                                .padding(.trailing, 20)
-                        }
                     }
                     .padding(.vertical, 10)
                 }
