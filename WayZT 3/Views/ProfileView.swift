@@ -17,8 +17,7 @@ struct ProfileView: View {
             Image(.pine) // Replace with your image name
                 .resizable()
                 .scaledToFill()
-                .ignoresSafeArea() // Makes sure the image covers the entire screen
-
+                .ignoresSafeArea() // Ensures the image covers the entire screen
             notiButton()
                 .blur(radius: changePic ? 2 : 0)
             
@@ -29,9 +28,7 @@ struct ProfileView: View {
                     .blur(radius: changePic ? 2 : 0)
             }
             .padding(.horizontal, 10)
-            .foregroundStyle(.black)
         }
-        .foregroundStyle(.black)
         .onDisappear{
             changePic = false
         }

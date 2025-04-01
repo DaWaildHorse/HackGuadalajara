@@ -59,7 +59,7 @@ fileprivate struct TabsLayoutView: View {
                     selectedTab = tab
                 }
                 
-                selectedOffset = -0
+                selectedOffset = 0
                 if tab < selectedTab {
                     rotationAngle += 0
                 } else {

@@ -52,11 +52,11 @@ enum Tab: Int, CaseIterable, Identifiable {
     var tabName: String {
         switch self {
         case .Profile:
-            return "Mi viejo"
+            return ""
         case .Camera:
-            return "Camaron"
+            return ""
         case .Maps:
-            return "Mapache"
+            return ""
         }
     }
     
