@@ -1,17 +1,10 @@
-//
-//  ProfileView.swift
-//  Waste Manager
-//
-//  Created by Ultiimate Dog on 28/02/24.
-//
-
 import SwiftUI
 import PhotosUI
 
 struct ProfileView: View {
     // MARK: - ATTRIBUTE
     var modelData: ModelData = .shared
-    
+
     @State private var anim = false
     @State var changePic = false
     
@@ -20,9 +13,12 @@ struct ProfileView: View {
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .top) {
-            Rectangle()
-                .fill(.second)
-                .ignoresSafeArea()
+            // Background image
+            Image("pine") // Replace with your image name
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea() // Makes sure the image covers the entire screen
+
             notiButton()
                 .blur(radius: changePic ? 2 : 0)
             
@@ -33,7 +29,9 @@ struct ProfileView: View {
                     .blur(radius: changePic ? 2 : 0)
             }
             .padding(.horizontal, 10)
+            .foregroundStyle(.black)
         }
+        .foregroundStyle(.black)
         .onDisappear{
             changePic = false
         }
