@@ -23,18 +23,6 @@ struct ProfileView: View {
             Rectangle()
                 .fill(.second)
                 .ignoresSafeArea()
-                .opacity(0.2)
-            
-            Rectangle()
-                .fill(
-                    LinearGradient(colors: [.accent, .accent, .accent],
-                                   startPoint: .topLeading, endPoint: .bottomTrailing)
-                )
-                .shadow(color: .accent, radius: 12)
-                .frame(height: 150)
-                .blur(radius: changePic ? 2 : 0)
-                .ignoresSafeArea()
-            
             notiButton()
                 .blur(radius: changePic ? 2 : 0)
             
@@ -61,18 +49,7 @@ struct ProfileView: View {
                 .frame(width: 210)
                 .scaleEffect(x: anim ? 1.5 : 1, y: anim ? 1.5 : 1)
                 .onAppear {
-                    withAnimation(.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
-                        anim.toggle()
-                    }
                 }
-            Image(.frame)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 240)
-                .offset(x: -1)
-                .rotationEffect(.degrees(anim ? 45 : 0))
-                .scaleEffect(x: anim ? 1 : 0.99, y: anim ? 1 : 0.99)
-                .blur(radius: changePic ? 2 : 0)
             Image(uiImage: modelData.profile.profilePic)
                 .resizable()
                 .scaledToFill()
@@ -137,6 +114,7 @@ struct ProfileView: View {
         HStack {
             Text(modelData.profile.username)
                 .font(.title)
+                .foregroundStyle(.white)
                 .bold()
                 .foregroundStyle(.second)
                 .offset(y: -10)
@@ -152,4 +130,8 @@ struct ProfileView: View {
             }
         }
     }
+}
+
+#Preview {
+    ProfileView()
 }
