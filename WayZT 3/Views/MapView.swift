@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MapView: View {
     // MARK: - ATTRIBUTES
-    let dWidth: Double = 300
-    let dHeight: Double = 300
    
     // MARK: - BODY
     var body: some View {
@@ -53,7 +51,7 @@ struct MapView: View {
                 }
             }
             .padding(.horizontal, 10)
-            .padding(.bottom, dWidth / 5 + 10)
+            .padding(.bottom, 50)
         }
     }
 }
