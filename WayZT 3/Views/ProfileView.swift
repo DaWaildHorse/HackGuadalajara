@@ -7,31 +7,53 @@ struct ProfileView: View {
 
     @State private var anim = false
     @State var changePic = false
+    @State private var isPresented: Bool = false
     
     @State private var avatarItem: PhotosPickerItem?
 
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .top) {
-            // Background image
-
-            Image(.pine) // Replace with your image name
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea() // Ensures the image covers the entire screen
+            if isPresented {
+                Image(.pine)
+                    .resizable()
+                    .scaledToFill()
+                    .scaleEffect(0.9)
+                    .ignoresSafeArea()
+                    .offset(x: -160, y: 150)
+                    .transition(.offset(x: -50, y: 200))
+                
+                Image(.pine)
+                    .resizable()
+                    .scaledToFill()
+                    .scaleEffect(1.1)
+                    .ignoresSafeArea()
+                    .offset(x: 160, y: 130)
+                    .transition(.offset(x: 100, y: 300))
+            }
+            
             notiButton()
                 .blur(radius: changePic ? 2 : 0)
             
             VStack {
                 profilePic()
+
                 
                 nameAShare()
                     .blur(radius: changePic ? 2 : 0)
+
             }
             .padding(.horizontal, 10)
+            .transaction { $0.animation = nil }
+        }
+        .onAppear {
+            withAnimation(.smooth(duration: 1.0)) {
+                isPresented = true
+            }
         }
         .onDisappear{
             changePic = false
+            isPresented = false
         }
     }
     
