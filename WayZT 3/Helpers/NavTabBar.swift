@@ -79,13 +79,14 @@ fileprivate struct TabsLayoutView: View {
                         Capsule()
                             .fill(.accent)
                             .matchedGeometryEffect(id: "Selected Tab", in: namespace)
-                            .frame(width: 70, height: 35)
+                            .frame(width: 50, height: 30)
                     }
                     HStack(spacing: 10) {
                         Image(systemName: tab.image)
                             .font(.system(size: 25, weight: .semibold, design: .rounded))
                             .foregroundColor(.second)
                             .rotationEffect(.degrees(rotationAngle))
+
                             .animation(.easeInOut, value: rotationAngle)
                             //.padding(.leading, isSelected ? 20 : 0)
                             .offset(y: selectedOffset)

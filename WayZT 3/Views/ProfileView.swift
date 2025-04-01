@@ -14,6 +14,7 @@ struct ProfileView: View {
     var body: some View {
         ZStack(alignment: .top) {
             // Background image
+
             Image(.pine) // Replace with your image name
                 .resizable()
                 .scaledToFill()
