@@ -59,11 +59,11 @@ fileprivate struct TabsLayoutView: View {
                     selectedTab = tab
                 }
                 
-                selectedOffset = -60
+                selectedOffset = -0
                 if tab < selectedTab {
-                    rotationAngle += 360
+                    rotationAngle += 0
                 } else {
-                    rotationAngle -= 360
+                    rotationAngle -= 0
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     selectedOffset = 0
@@ -83,15 +83,14 @@ fileprivate struct TabsLayoutView: View {
                     }
                     HStack(spacing: 10) {
                         Image(systemName: tab.image)
-                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .font(.system(size: 25, weight: .semibold, design: .rounded))
                             .foregroundColor(.second)
                             .rotationEffect(.degrees(rotationAngle))
-                            .scaleEffect(isSelected ? 1 : 0.9)
                             .animation(.easeInOut, value: rotationAngle)
                             //.padding(.leading, isSelected ? 20 : 0)
-                            .padding(.horizontal, selectedTab != tab ? 10 : 0)
                             .offset(y: selectedOffset)
                             .animation(.default, value: selectedOffset)
+                            .padding(.horizontal, 30)
                     }
                     .padding(.vertical, 10)
                 }
