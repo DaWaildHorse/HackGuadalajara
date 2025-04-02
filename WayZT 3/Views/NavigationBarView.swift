@@ -25,7 +25,7 @@ struct NavigationBarView: View {
                 ProfileView()
                     .tag(Tab.Profile)
                 
-                MapView()
+                NewMapView()
                     .tag(Tab.Maps)
                     
             }

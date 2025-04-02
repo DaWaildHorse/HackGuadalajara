@@ -142,7 +142,6 @@ struct OrganicMap: View {
             CLLocationManager().requestWhenInUseAuthorization()
             convertCoordinates()
         }
-        
         .onChange(of: POISelection, {oldValue , newValue in
             details = newValue != nil
         })

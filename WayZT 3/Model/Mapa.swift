@@ -6,17 +6,24 @@
 //
 
 import Foundation
+import MapKit
+import SwiftUI
 
-struct Mapa: Codable, Hashable, Identifiable {
-    let id: String
-    let name: String
-    let category: [String]
-    let rating: Float
+struct Mapa: Hashable, Identifiable {
+    var id = UUID()
+    let category: String
+    let icon: String
+    let color: Color
+    let map: MKMapItem
     
-    init(id: String, name: String, category: [String], rating: Float) {
-        self.id = id
-        self.name = name
-        self.category = category
-        self.rating = rating
+    init(map: MKMapItem) {
+        let categories = ["Recycle", "Organic", "Electronic", "Glass"]
+        let icons = ["waterbottle", "carrot", "macbook.and.iphone", "wineglass"]
+        let colors = [Color.green, Color.yellow, Color.orange, Color.blue]
+        let rand = Int.random(in: 0...3)
+        self.category = categories[rand]
+        self.icon = icons[rand]
+        self.color = colors[rand]
+        self.map = map
     }
 }
