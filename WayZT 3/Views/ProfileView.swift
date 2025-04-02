@@ -75,8 +75,12 @@ struct ProfileView: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: 180, height: 180)
-                .background()
                 .clipShape(Circle())
+                .background(
+                    Circle()
+                        .fill(.accent)
+                        .frame(width: 185, height: 185)
+                )
                 .scaleEffect(x: changePic ? 1.1 : 1, y: changePic ? 1.1 : 1)
                 .onLongPressGesture(minimumDuration: 0.5) {
                     withAnimation() {
@@ -110,17 +114,17 @@ struct ProfileView: View {
             Button {
                 //
             } label: {
-                Image(systemName: "gear")
+                Image(systemName: "gearshape.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35)
                     .foregroundStyle(.accent)
             }
             Spacer()
-            Button {
-                //
+            NavigationLink {
+                ArticlesView()
             } label: {
-                Image(systemName: "bell.fill")
+                Image(systemName: "newspaper.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 30)

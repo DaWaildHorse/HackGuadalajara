@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationBarView: View {
     // MARK: - ATTRIBUTES
-    @State var currentTab: Tab = .Camera
+    @State var currentTab: Tab = .Profile
     
     // Hide native bar
     init () {

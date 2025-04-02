@@ -18,7 +18,7 @@ struct ArticlesView: View {
             Rectangle()
                 .fill(.second)
                 .ignoresSafeArea()
-                .opacity(0.3)
+                .opacity(0.1)
             
             VStack(spacing: 0) {
                 SearchBar(placeholderText: "Busca un articulo")
@@ -33,11 +33,11 @@ struct ArticlesView: View {
                         }
                         .padding(.bottom, 5)
                     }
-                    .padding(.bottom, 60)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
             .padding(.horizontal, 10)
+            .padding(.top, 10)
         }//: ZSTACK
     }
 }
