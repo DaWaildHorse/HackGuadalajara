@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		06B22C942D9C49880015B7E4 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B22C932D9C497B0015B7E4 /* TextRecognition.swift */; };
 		06B22C972D9C567D0015B7E4 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B22C962D9C567D0015B7E4 /* TicketView.swift */; };
+		6215F2552D9D4B1100628AF8 /* NewMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215F2542D9D4B1100628AF8 /* NewMapView.swift */; };
 		622054722D9C279A0085214A /* MapProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054522D9C279A0085214A /* MapProgress.swift */; };
 		622054732D9C279A0085214A /* POIdetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054572D9C279A0085214A /* POIdetails.swift */; };
 		622054742D9C279A0085214A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220546C2D9C279A0085214A /* ProfileView.swift */; };
@@ -21,16 +22,13 @@
 		6220547B2D9C279A0085214A /* ArticlePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054512D9C279A0085214A /* ArticlePreview.swift */; };
 		6220547C2D9C279A0085214A /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054582D9C279A0085214A /* PointOfInterest.swift */; };
 		6220547D2D9C279A0085214A /* ArticleDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054502D9C279A0085214A /* ArticleDisplay.swift */; };
-		6220547E2D9C279A0085214A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054692D9C279A0085214A /* ContentView.swift */; };
 		6220547F2D9C279A0085214A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220544E2D9C279A0085214A /* SplashScreenView.swift */; };
 		622054802D9C279A0085214A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054682D9C279A0085214A /* CameraView.swift */; };
 		622054812D9C279A0085214A /* TrueMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054592D9C279A0085214A /* TrueMapView.swift */; };
 		622054822D9C279A0085214A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220545E2D9C279A0085214A /* Profile.swift */; };
-		622054832D9C279A0085214A /* ArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054662D9C279A0085214A /* ArticlesView.swift */; };
 		622054842D9C279A0085214A /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220544D2D9C279A0085214A /* ContainerView.swift */; };
 		622054852D9C279A0085214A /* TypeWasteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054542D9C279A0085214A /* TypeWasteButton.swift */; };
 		622054862D9C279A0085214A /* Mapa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220545C2D9C279A0085214A /* Mapa.swift */; };
-		622054872D9C279A0085214A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220546A2D9C279A0085214A /* MapView.swift */; };
 		622054882D9C279A0085214A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054532D9C279A0085214A /* SearchBar.swift */; };
 		622054892D9C279A0085214A /* WasteClassification-v3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6220546F2D9C279A0085214A /* WasteClassification-v3.mlmodel */; };
 		6220548A2D9C279A0085214A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220545B2D9C279A0085214A /* Article.swift */; };
@@ -39,12 +37,12 @@
 		6220548D2D9C279A0085214A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6220546E2D9C279A0085214A /* Assets.xcassets */; };
 		6220548E2D9C279A0085214A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622054642D9C279A0085214A /* Preview Assets.xcassets */; };
 		622054FF2D9C2BAF0085214A /* NavTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054FE2D9C2BAF0085214A /* NavTabBar.swift */; };
-		622055012D9C324A0085214A /* FootprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622055002D9C324A0085214A /* FootprintView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06B22C932D9C497B0015B7E4 /* TextRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognition.swift; sourceTree = "<group>"; };
 		06B22C962D9C567D0015B7E4 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		6215F2542D9D4B1100628AF8 /* NewMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMapView.swift; sourceTree = "<group>"; };
 		6220543C2D9C27270085214A /* WayZT 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WayZT 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6220544D2D9C279A0085214A /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		6220544E2D9C279A0085214A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -65,19 +63,23 @@
 		622054612D9C279A0085214A /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		622054622D9C279A0085214A /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		622054642D9C279A0085214A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		622054662D9C279A0085214A /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
 		622054672D9C279A0085214A /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		622054682D9C279A0085214A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		622054692D9C279A0085214A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		6220546A2D9C279A0085214A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6220546B2D9C279A0085214A /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		6220546C2D9C279A0085214A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6220546E2D9C279A0085214A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6220546F2D9C279A0085214A /* WasteClassification-v3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "WasteClassification-v3.mlmodel"; sourceTree = "<group>"; };
 		622054702D9C279A0085214A /* WayZT_3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayZT_3App.swift; sourceTree = "<group>"; };
 		622054FE2D9C2BAF0085214A /* NavTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBar.swift; sourceTree = "<group>"; };
-		622055002D9C324A0085214A /* FootprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6215F2532D9D4ABB00628AF8 /* Old Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Old Views";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		622054392D9C27270085214A /* Frameworks */ = {
@@ -180,14 +182,12 @@
 		6220546D2D9C279A0085214A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				622054662D9C279A0085214A /* ArticlesView.swift */,
+				6215F2532D9D4ABB00628AF8 /* Old Views */,
 				622054672D9C279A0085214A /* ARViewContainer.swift */,
 				622054682D9C279A0085214A /* CameraView.swift */,
-				622054692D9C279A0085214A /* ContentView.swift */,
-				6220546A2D9C279A0085214A /* MapView.swift */,
 				6220546B2D9C279A0085214A /* NavigationBarView.swift */,
+				6215F2542D9D4B1100628AF8 /* NewMapView.swift */,
 				6220546C2D9C279A0085214A /* ProfileView.swift */,
-				622055002D9C324A0085214A /* FootprintView.swift */,
 				06B22C962D9C567D0015B7E4 /* TicketView.swift */,
 			);
 			path = Views;
@@ -224,6 +224,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6215F2532D9D4ABB00628AF8 /* Old Views */,
 			);
 			name = "WayZT 3";
 			packageProductDependencies = (
@@ -297,18 +300,15 @@
 				6220547C2D9C279A0085214A /* PointOfInterest.swift in Sources */,
 				6220547D2D9C279A0085214A /* ArticleDisplay.swift in Sources */,
 				06B22C972D9C567D0015B7E4 /* TicketView.swift in Sources */,
-				6220547E2D9C279A0085214A /* ContentView.swift in Sources */,
+				6215F2552D9D4B1100628AF8 /* NewMapView.swift in Sources */,
 				6220547F2D9C279A0085214A /* SplashScreenView.swift in Sources */,
 				622054802D9C279A0085214A /* CameraView.swift in Sources */,
 				06B22C942D9C49880015B7E4 /* TextRecognition.swift in Sources */,
 				622054812D9C279A0085214A /* TrueMapView.swift in Sources */,
 				622054822D9C279A0085214A /* Profile.swift in Sources */,
-				622055012D9C324A0085214A /* FootprintView.swift in Sources */,
-				622054832D9C279A0085214A /* ArticlesView.swift in Sources */,
 				622054842D9C279A0085214A /* ContainerView.swift in Sources */,
 				622054852D9C279A0085214A /* TypeWasteButton.swift in Sources */,
 				622054862D9C279A0085214A /* Mapa.swift in Sources */,
-				622054872D9C279A0085214A /* MapView.swift in Sources */,
 				622054882D9C279A0085214A /* SearchBar.swift in Sources */,
 				622054892D9C279A0085214A /* WasteClassification-v3.mlmodel in Sources */,
 				6220548A2D9C279A0085214A /* Article.swift in Sources */,
