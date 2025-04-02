@@ -72,6 +72,7 @@ struct NewMapView: View {
             TagBar()
             
         }//: ZSTACK
+        .toolbarVisibility(.hidden, for: .navigationBar)
     }
     
     // MARK: - PILL
