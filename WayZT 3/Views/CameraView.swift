@@ -16,42 +16,50 @@ struct CameraView: View {
     // MARK: - ATTRIBUTES
     var modelData: ModelData = .shared
     @State var viewAR = true
-    @State var isTicket = false
     
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .top) {
-            ARViewContainer(enableAR: $viewAR, t: $isTicket)
+            ARViewContainer(enableAR: $viewAR)
                 .ignoresSafeArea()
             
-            if isTicket {
-                TicketView()
-            }else {changeView()}
-            
-            VStack {
-                changeTicket()
-                
-                // Only shows information if something is recognized
-                if isTicket {
-                } else {
-                    if viewAR {
-                        WasteIdentDisplay()
-                    } else {
-                        WasteIdentDisplay2()
-                    }
-                }
-
-
+            if !modelData.analyzeText {
+                changeView()
             }
             
+            VStack {
+                // Only shows information if something is recognized
+                if !modelData.analyzeText {
+                    if viewAR {
+                        WasteIdentDisplay()
+                            .transition(.move(edge: .leading))
+                    } else {
+                        WasteIdentDisplay2()
+                            .transition(.move(edge: .trailing))
+                    }
+                } else {
+                    TicketView()
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .padding()
+                        .padding(.bottom, 50)
+                        .transition(.move(edge: .bottom))
+                }
+
+            }//: VSTACK
+            .padding(.top, 55)
+            
+            changeTicket()
         }//: ZSTACK
+        
     }
     
     // MARK: - CHANGE VIEW
     func changeView() -> some View {
         HStack {
             Button {
-                viewAR.toggle()
+                withAnimation() {
+                    viewAR.toggle()
+                }
             } label: {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(.ultraThinMaterial)
@@ -78,18 +86,20 @@ struct CameraView: View {
         HStack {
             Spacer()
             Button {
-                isTicket.toggle()
+                withAnimation() {
+                    modelData.analyzeText.toggle()
+                }
             } label: {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(.ultraThinMaterial)
                     .scaledToFit()
                     .frame(width: 50)
                     .overlay {
-                        Image(systemName: isTicket ? "ticket.fill" : "ticket")
+                        Image(systemName: modelData.analyzeText ? "ticket.fill" : "ticket")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 35)
-                            .foregroundStyle(isTicket ? .accent : .gray)
+                            .foregroundStyle(modelData.analyzeText ? .accent : .gray)
                             .contentTransition(.symbolEffect(.replace))
                     }
             }

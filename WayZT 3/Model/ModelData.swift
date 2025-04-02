@@ -14,7 +14,7 @@ import ARKit
 import Observation
 
 // create and observable object that structs can access
-@Observable class ModelData {
+@Observable final class ModelData: Sendable {
     private init() { }
     var recognizedText: String? = nil
     var ocr = OCR()
@@ -25,14 +25,25 @@ import Observation
     var profile = Profile.default
     var IdentfiedWaste = "Not found"
     var showTutorial = true
+    var analyzeText = true
     
     // instantiate the core ML model
     var model  = try! VNCoreMLModel(for: WasteClassification_v3(configuration: .init()).model)
     
     // call the continuouslyUpdate function every half second
-    var timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+    var timer: Timer =
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+            choose()
+        })
+}
+
+func choose() {
+    let modelData: ModelData = .shared
+    if modelData.analyzeText {
+        captureImageAndProcess()
+    } else {
         continuouslyUpdate()
-    })
+    }
 }
 
 // MARK: - GRAB FRAMES
@@ -85,6 +96,31 @@ func continuouslyUpdate() {
     if modelData.IdentfiedWaste != firstWord {
         DispatchQueue.main.async {
             modelData.IdentfiedWaste = firstWord
+        }
+    }
+}
+
+// MARK: - TEXT
+func captureImageAndProcess() {
+    let modelData: ModelData = .shared
+    guard let frame = modelData.ARview.session.currentFrame else { return }
+    let buffer = frame.capturedImage
+    
+    let ciImage = CIImage(cvPixelBuffer: buffer)
+    let uiImage = UIImage(ciImage: ciImage)
+    
+    guard let imageData = uiImage.jpegData(compressionQuality: 0.8) else { return }
+    
+    Task {
+        do {
+            try await modelData.ocr.performOCR(imageData: imageData)
+            DispatchQueue.main.async {
+                modelData.recognizedText = modelData.ocr.observations
+                    .compactMap { $0.topCandidates(1).first?.string }
+                    .joined(separator: "\n")
+            }
+        } catch {
+            print("OCR Error: \(error)")
         }
     }
 }

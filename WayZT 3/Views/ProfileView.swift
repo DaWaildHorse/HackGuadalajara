@@ -14,29 +14,7 @@ struct ProfileView: View {
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .top) {
-            if isPresented {
-                Image(.pine)
-                    .resizable()
-                    .scaledToFill()
-                    .scaleEffect(0.9)
-                    .ignoresSafeArea()
-                    .offset(x: -160, y: 150)
-                    .transition(.offset(x: -50, y: 200))
-                    .blur(radius: changePic ? 2 : 0)
-                
-                Image(.pine)
-                    .resizable()
-                    .scaledToFill()
-                    .scaleEffect(1.1)
-                    .ignoresSafeArea()
-                    .offset(x: 160, y: 130)
-                    .transition(.offset(x: 100, y: 300))
-                    .blur(radius: changePic ? 2 : 0)
-            }
-             
-            
             notiButton()
-                .frame(maxWidth: 380)
                 .transaction { $0.animation = nil }
                 .blur(radius: changePic ? 2 : 0)
             
@@ -45,11 +23,33 @@ struct ProfileView: View {
                 
                 nameAShare()
                     .blur(radius: changePic ? 2 : 0)
-
+                
+                Spacer()
             }
             .padding(.horizontal, 10)
             .transaction { $0.animation = nil }
         }
+        // MARK: - BACKGROUND
+        .background {
+            Color.second.ignoresSafeArea().opacity(0.1)
+            
+            if isPresented {
+                Image(.pine)
+                    .scaleEffect(0.8)
+                    .ignoresSafeArea()
+                    .offset(x: -160, y: 150)
+                    .transition(.offset(x: -50, y: 200))
+                    .blur(radius: changePic ? 2 : 0)
+                
+                Image(.pine)
+                    .scaleEffect(1)
+                    .ignoresSafeArea()
+                    .offset(x: 160, y: 130)
+                    .transition(.offset(x: 100, y: 300))
+                    .blur(radius: changePic ? 2 : 0)
+            }
+        }//: BACKGROUND
+        // MARK: - ANIMS
         .onAppear {
             withAnimation(.smooth(duration: 1.0)) {
                 isPresented = true
@@ -115,7 +115,7 @@ struct ProfileView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35)
-                    .foregroundStyle(.second)
+                    .foregroundStyle(.accent)
             }
             Spacer()
             Button {
@@ -125,7 +125,7 @@ struct ProfileView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 30)
-                    .foregroundStyle(.second)
+                    .foregroundStyle(.accent)
             }
         }
         .padding(.horizontal, 17)

@@ -1,61 +1,67 @@
 import SwiftUI
 
 struct TicketView: View {
+    // MARK: - ATTRIBUTES
     var modelData = ModelData.shared
-    
-    @Environment(\.presentationMode) var presentationMode // To access the presentation mode
-    
-    // State to track if the content is ready to be shown
     @State private var isContentVisible = false
-    
-    // Delay time
     private let delayTime: TimeInterval = 1.0
     
+    // MARK: - BODY
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.black.ignoresSafeArea() // Fullscreen background
-                Image(.leafs) // Adjusted to ensure the image name is correct
-                    .resizable()
-                    .scaledToFill()
-                    .scaleEffect(0.7)
-                    .ignoresSafeArea()
-                    .opacity(0.8)
-                    .offset(x: 160, y: 200)
-                    .transition(.offset(x: -50, y: 200))
+        HStack {
+            Spacer()
+            
+            VStack {
+                Spacer()
                 
-                VStack {
-                    Text("Ticket Transcript")
-                        .font(.title)
-                        .bold()
-                    
-                    if isContentVisible {
-                        if let recognizedText = modelData.recognizedText, !recognizedText.isEmpty {
-                            VStack {
-                                Text(recognizedText)
-                                    .font(.body)
-                                    .foregroundColor(.white)
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: 16)
-                            .cornerRadius(10)
-                        } else {
-                            Text("Processing ticket...")
-                                .font(.headline)
+                Text("Ticket Transcript")
+                    .font(.title)
+                    .bold()
+                
+                if isContentVisible {
+                    if let recognizedText = modelData.recognizedText, !recognizedText.isEmpty {
+                        VStack {
+                            Text(recognizedText)
+                                .font(.body)
                                 .foregroundColor(.white)
                         }
+                        .frame(maxWidth: .infinity, maxHeight: 16)
+                        .cornerRadius(10)
                     } else {
-                        Text("Please wait...")
+                        Text("Processing ticket...")
                             .font(.headline)
                             .foregroundColor(.white)
                     }
+                } else {
+                    Text("Please wait...")
+                        .font(.headline)
+                        .foregroundColor(.white)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
+                
+                Spacer()
+            }//: VSTACK
+            
+            Spacer()
+        }
+        // MARK: - BACKGROUND
+        .background {
+            Color.mainBackground.opacity(0.9)
+            
+            if isContentVisible {
+                Image(.leafs) // Adjusted to ensure the image name is correct
+                    .scaleEffect(0.6)
+                    .opacity(0.7)
+                    .rotationEffect(.degrees(-20))
+                    .offset(x: 150, y: 200)
+                    .transition(.offset(x: 100, y: 200))
+                    .frame(width: 100)
             }
-            .onAppear {
-                // Trigger the delay when the view appears
-                DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
-                    // Update the state after the delay
+        }
+        // MARK: - ON APPEAR
+        .onAppear {
+            Task {
+                try? await Task.sleep(for: .seconds(0.5))
+                withAnimation() {
                     isContentVisible = true
                 }
             }
