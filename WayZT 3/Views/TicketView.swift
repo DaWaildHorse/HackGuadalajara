@@ -23,19 +23,19 @@ struct TicketView: View {
                         VStack {
                             Text(recognizedText)
                                 .font(.body)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.second)
                         }
                         .frame(maxWidth: .infinity, maxHeight: 16)
                         .cornerRadius(10)
                     } else {
                         Text("Processing ticket...")
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.second)
                     }
                 } else {
                     Text("Please wait...")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.second)
                 }
                 
                 Spacer()

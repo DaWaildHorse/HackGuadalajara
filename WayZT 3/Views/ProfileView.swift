@@ -27,7 +27,6 @@ struct ProfileView: View {
                 Spacer()
             }
             .padding(.horizontal, 10)
-            .transaction { $0.animation = nil }
         }
         // MARK: - BACKGROUND
         .background {
@@ -136,7 +135,6 @@ struct ProfileView: View {
         HStack {
             Text(modelData.profile.username)
                 .font(.title)
-                .foregroundStyle(.white)
                 .bold()
                 .foregroundStyle(.second)
                 .offset(y: -10)
