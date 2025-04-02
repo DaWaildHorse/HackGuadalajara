@@ -17,9 +17,7 @@ struct CView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .foregroundColor(.second)
-                .ignoresSafeArea()
+            Color.second.ignoresSafeArea().opacity(0.1)
             
             VStack {
                 TabView(selection: $pageIndex) {
@@ -34,19 +32,19 @@ struct CView: View {
                                     Image(systemName: "play.circle.fill")
                                         .resizable()
                                         .frame(width: 64, height: 64)
-                                        .foregroundColor(.white)
+                                        .foregroundStyle(.mainBackground)
                                 }
                                 .padding(.bottom, 40)
                                 
                             } else {
                                 Rectangle()
-                                    .fill(Color.white)
+                                    .fill(.mainBackground)
                                     .frame(width: 200, height: 60)
                                     .cornerRadius(30)
                                     .overlay(
                                         Text("Continuar")
                                             .font(.system(size: 20, weight: .bold))
-                                            .foregroundColor(.black)
+                                            .foregroundStyle(.second)
                                     )
                                     .onTapGesture {
                                         incrementPage() 

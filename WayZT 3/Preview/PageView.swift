@@ -51,7 +51,7 @@ struct PageView: View {
             VStack(spacing: 20) {
                 Text(page.name)
                     .font(.system(size: 35, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(.second)
                     .multilineTextAlignment(.center)
                     .padding(.top, 50)
 
@@ -62,10 +62,11 @@ struct PageView: View {
 
                 Text(page.description)
                     .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                    .shadow(color: .black.opacity(1), radius: 4, x: 0, y: 4)
+                    .foregroundColor(.second)
+                    .shadow(color: .mainBackground.opacity(1), radius: 4, x: 0, y: 0)
                     .multilineTextAlignment(.center)
                     .frame(width: 300)
+                    
             }
             .opacity(isPresented ? 1 : 0)
             .animation(.easeInOut(duration: 1), value: isPresented)
