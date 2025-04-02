@@ -1,10 +1,24 @@
 import SwiftUI
 
+struct WasteItem: Identifiable {
+    let id = UUID()
+    let name: String
+    let isRecyclable: Bool
+    var details: [String] // List of details for each item
+}
+
 struct TicketView: View {
     // MARK: - ATTRIBUTES
     var modelData = ModelData.shared
     @State private var isContentVisible = false
+    @State private var expandedItem: UUID? = nil // Tracks which item is expanded
     private let delayTime: TimeInterval = 1.0
+    
+    let wasteItems = [
+        WasteItem(name: "Takis Fuego", isRecyclable: false, details: ["Not biodegradable", "Contains plastic packaging"]),
+        WasteItem(name: "Vasos Plastico", isRecyclable: true, details: ["Reusable", "Can be recycled in plastics bin"]),
+        WasteItem(name: "Platano", isRecyclable: true, details: ["Organic waste", "Can be composted"])
+    ]
     
     // MARK: - BODY
     var body: some View {
@@ -14,18 +28,75 @@ struct TicketView: View {
             VStack {
                 Spacer()
                 
-                Text("Ticket Transcript")
+                Text("Huella de Carbono")
                     .font(.title)
                     .bold()
                 
                 if isContentVisible {
                     if let recognizedText = modelData.recognizedText, !recognizedText.isEmpty {
                         VStack {
-                            Text(recognizedText)
-                                .font(.body)
-                                .foregroundStyle(.second)
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    // Clickable list
+                                    ForEach(wasteItems) { item in
+                                        VStack(alignment: .leading) {
+                                            Button(action: {
+                                                withAnimation {
+                                                    expandedItem = (expandedItem == item.id) ? nil : item.id
+                                                }
+                                            }) {
+                                                HStack {
+                                                    Text(item.name)
+                                                        .font(.headline)
+                                                        .foregroundColor(.white)
+                                                        .padding(.horizontal, 15)
+                                                        .padding(.vertical, 8)
+                                                        .background(Capsule().fill(item.isRecyclable ? Color.green : Color.red))
+
+                                                    Spacer()
+                                                    
+                                                    Image(systemName: expandedItem == item.id ? "chevron.up" : "chevron.down")
+                                                        .foregroundColor(.white)
+                                                }
+                                            }
+
+                                            if expandedItem == item.id {
+                                                VStack(alignment: .leading, spacing: 3) {
+                                                    ForEach(item.details, id: \.self) { detail in
+                                                        Text("- \(detail)")
+                                                            .font(.subheadline)
+                                                            .foregroundColor(.white)
+                                                            .padding(.leading, 10)
+                                                    }
+                                                }
+                                                .padding(.top, 5)
+                                            }
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                }
+                            }
+                            // Gauges
+                            HStack {
+                                VStack {
+                                    precisionGauge(value: 3.5 , color: .accent)
+                                    TextPill("Reciclable", color: .green).offset(y:30)
+                                }
+                                .offset(x: -25)
+                                
+                                VStack {
+                                    precisionGauge(value: 1.12 , color: .red)
+                                    TextPill("No Reciclable", color: .red).offset(y:30)
+                                }
+                                .offset(x: 25)
+                            }
+                            .offset(y:-150)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .background(.gray.opacity(1.00))
+                            
+                            
                         }
-                        .frame(maxWidth: .infinity, maxHeight: 16)
+                        .frame(maxWidth: .infinity, maxHeight: 500)
                         .cornerRadius(10)
                     } else {
                         Text("Processing ticket...")
@@ -59,7 +130,7 @@ struct TicketView: View {
             Color.mainBackground.opacity(0.9)
             
             if isContentVisible {
-                Image(.leafs) // Adjusted to ensure the image name is correct
+                Image(.leafs)
                     .scaleEffect(0.6)
                     .opacity(0.7)
                     .rotationEffect(.degrees(-20))
@@ -72,7 +143,7 @@ struct TicketView: View {
         .onAppear {
             Task {
                 try? await Task.sleep(for: .seconds(0.5))
-                withAnimation() {
+                withAnimation {
                     isContentVisible = true
                 }
             }
@@ -80,6 +151,40 @@ struct TicketView: View {
     }
 }
 
+// MARK: - Capsule Text View
+func TextPill(_ text: String, color: Color) -> some View {
+    Text(text)
+        .font(.headline)
+        .foregroundColor(.white)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(Capsule().fill(color))
+}
+
+func precisionGauge(value: Float , color : Color) -> some View {
+        ZStack {
+
+            Gauge(value: value, in: 0...16) {
+                Image(systemName: "heart.fill")
+                    .foregroundColor(.red)
+            } currentValueLabel: {
+                Text(String(format: "%.2f", value))
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            } minimumValueLabel: {
+                Text("Kg")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            } maximumValueLabel: {
+                Text("CO")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            }
+            .scaleEffect(1.5)
+            .frame(height: 10)
+            .gaugeStyle(AccessoryCircularGaugeStyle())
+        }
+    }
 #Preview {
     TicketView()
 }

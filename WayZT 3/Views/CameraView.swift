@@ -22,7 +22,6 @@ struct CameraView: View {
         ZStack(alignment: .top) {
             ARViewContainer(enableAR: $viewAR)
                 .ignoresSafeArea()
-            
             if !modelData.analyzeText {
                 changeView()
             }

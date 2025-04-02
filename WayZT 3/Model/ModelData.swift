@@ -33,7 +33,7 @@ import Observation
     
     // call the continuouslyUpdate function every half second
     var timer: Timer =
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
             choose()
         })
 }
