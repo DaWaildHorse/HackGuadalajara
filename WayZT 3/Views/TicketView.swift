@@ -15,9 +15,9 @@ struct TicketView: View {
     private let delayTime: TimeInterval = 1.0
     
     let wasteItems = [
-        WasteItem(name: "Takis Fuego", isRecyclable: false, details: ["Not biodegradable", "Contains plastic packaging"]),
-        WasteItem(name: "Vasos Plastico", isRecyclable: true, details: ["Reusable", "Can be recycled in plastics bin"]),
-        WasteItem(name: "Platano", isRecyclable: true, details: ["Organic waste", "Can be composted"])
+        WasteItem(name: "Takis Fuego", isRecyclable: false, details: ["No reciclable", "Containe elementos no separables"]),
+        WasteItem(name: "Vasos Plastico", isRecyclable: true, details: ["Reciclable", "Plastico"]),
+        WasteItem(name: "Platano", isRecyclable: true, details: ["Reciclable", "Organico"])
     ]
     
     // MARK: - BODY
