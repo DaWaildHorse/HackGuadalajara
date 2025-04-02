@@ -13,11 +13,14 @@ struct ContainerView: View {
     var body: some View {
         if gotoApp {
             NavigationBarView()
+                .ignoresSafeArea()
         } else {
             if !isSplashScreenViewPresented {
                 CView(gotoApp: $gotoApp)
+                .ignoresSafeArea()
             } else {
                 SplashScreenView(isPresented: $isSplashScreenViewPresented)
+                .ignoresSafeArea()
             }
         }
     }

@@ -30,24 +30,29 @@ struct CView: View {
                             Spacer()
                             
                             if page == pages.last {
-                                Button("Bienvenido", action: goToHome)
-                                    .buttonStyle(.bordered)
-                                    .foregroundColor(Color(red: 72/255, green: 62/255, blue: 77/255))
-                                    .padding(EdgeInsets(top: 20, leading: 35, bottom: 40, trailing: 30))
-                                    .foregroundColor(.white)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(red: 72/255, green: 62/255, blue: 77/255), lineWidth: 0))
+                                Button(action: goToHome) {
+                                    Image(systemName: "play.circle.fill")
+                                        .resizable()
+                                        .frame(width: 64, height: 64)
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.bottom, 40)
                                 
                             } else {
-                                Button("Continuar", action: incrementPage)
-                                    .buttonStyle(.bordered)
-                                    .foregroundColor(Color(red: 72/255, green: 62/255, blue: 77/255))
-                                    .padding(EdgeInsets(top: 20, leading: 35, bottom: 20, trailing: 30))
-                                    .foregroundColor(.white)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(red: 72/255, green: 62/255, blue: 77/255), lineWidth: 0))
+                                Rectangle()
+                                    .fill(Color.white)
+                                    .frame(width: 200, height: 60)
+                                    .cornerRadius(30)
+                                    .overlay(
+                                        Text("Continuar")
+                                            .font(.system(size: 20, weight: .bold))
+                                            .foregroundColor(.black)
+                                    )
+                                    .onTapGesture {
+                                        incrementPage() 
+                                    }
+                                    .padding(.bottom, 20)
+                                
                                 Spacer()
                             }
                         }
