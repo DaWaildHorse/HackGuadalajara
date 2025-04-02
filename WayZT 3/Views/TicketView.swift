@@ -39,6 +39,17 @@ struct TicketView: View {
                 }
                 
                 Spacer()
+                Button {
+                    modelData.stopRecog.toggle()
+                } label: {
+                    Image(systemName: modelData.stopRecog ? "play.circle.fill" : "stop.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60)
+                        .padding()
+                        .symbolEffect(.pulse.wholeSymbol, isActive: !modelData.stopRecog)
+                        .contentTransition(.symbolEffect(.replace))
+                }
             }//: VSTACK
             
             Spacer()

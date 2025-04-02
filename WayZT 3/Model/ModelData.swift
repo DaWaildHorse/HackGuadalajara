@@ -17,6 +17,7 @@ import Observation
 @Observable final class ModelData: Sendable {
     private init() { }
     var recognizedText: String? = nil
+    var stopRecog = false
     var ocr = OCR()
     static let shared = ModelData()
     
@@ -39,7 +40,7 @@ import Observation
 
 func choose() {
     let modelData: ModelData = .shared
-    if modelData.analyzeText {
+    if modelData.analyzeText && !modelData.stopRecog {
         captureImageAndProcess()
     } else {
         continuouslyUpdate()
