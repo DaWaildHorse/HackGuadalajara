@@ -37,6 +37,7 @@ struct TicketView: View {
                         VStack {
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 5) {
+                                    Text("Articulos del Ticket")
                                     // Clickable list
                                     ForEach(wasteItems) { item in
                                         VStack(alignment: .leading) {
@@ -55,6 +56,7 @@ struct TicketView: View {
 
                                                     Spacer()
                                                     
+                                                    // Chevron icon for expanding details
                                                     Image(systemName: expandedItem == item.id ? "chevron.up" : "chevron.down")
                                                         .foregroundColor(.white)
                                                 }
@@ -76,29 +78,31 @@ struct TicketView: View {
                                     }
                                 }
                             }
+                            
                             // Gauges
                             HStack {
                                 VStack {
                                     precisionGauge(value: 3.5 , color: .accent)
-                                    TextPill("Reciclable", color: .green).offset(y:30)
+                                    TextPill("Reciclable", color: .green)
+                                        .offset(y: 30)
                                 }
                                 .offset(x: -25)
                                 
                                 VStack {
                                     precisionGauge(value: 1.12 , color: .red)
-                                    TextPill("No Reciclable", color: .red).offset(y:30)
+                                    TextPill("No Reciclable", color: .red)
+                                        .offset(y: 30)
                                 }
                                 .offset(x: 25)
                             }
-                            .offset(y:-150)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .background(.gray.opacity(1.00))
-                            
-                            
+                            .offset(y: -100) // Adjusted vertical offset to bring the gauges closer
+                            .frame(maxWidth: .infinity, alignment: .center) // Ensures the gauges are centered
+
                         }
                         .frame(maxWidth: .infinity, maxHeight: 500)
                         .cornerRadius(10)
-                    } else {
+                        .padding() // Added padding for better layout spacing
+                    }else {
                         Text("Processing ticket...")
                             .font(.headline)
                             .foregroundStyle(.second)
@@ -161,30 +165,31 @@ func TextPill(_ text: String, color: Color) -> some View {
         .background(Capsule().fill(color))
 }
 
-func precisionGauge(value: Float , color : Color) -> some View {
-        ZStack {
-
-            Gauge(value: value, in: 0...16) {
-                Image(systemName: "heart.fill")
-                    .foregroundColor(.red)
-            } currentValueLabel: {
-                Text(String(format: "%.2f", value))
-                    .fontWeight(.heavy)
-                    .foregroundStyle(color)
-            } minimumValueLabel: {
-                Text("Kg")
-                    .fontWeight(.heavy)
-                    .foregroundStyle(color)
-            } maximumValueLabel: {
-                Text("CO")
-                    .fontWeight(.heavy)
-                    .foregroundStyle(color)
-            }
-            .scaleEffect(1.5)
-            .frame(height: 10)
-            .gaugeStyle(AccessoryCircularGaugeStyle())
+func precisionGauge(value: Float, color: Color) -> some View {
+    ZStack {
+        Gauge(value: value, in: 0...16) {
+            Image(systemName: "heart.fill")
+                .foregroundColor(.red)
+        } currentValueLabel: {
+            Text(String(format: "%.2f", value))
+                .fontWeight(.heavy)
+                .foregroundStyle(color)
+        } minimumValueLabel: {
+            Text("Kg")
+                .fontWeight(.heavy)
+                .foregroundStyle(color)
+        } maximumValueLabel: {
+            Text("CO")
+                .fontWeight(.heavy)
+                .foregroundStyle(color)
         }
+        .scaleEffect(1.5)
+        .frame(height: 100)  // Increased height to make the gauge more visible
+        .gaugeStyle(AccessoryCircularGaugeStyle())
+        .tint(color) // This line changes the color of the gauge ring
     }
+}
+
 #Preview {
     TicketView()
 }
