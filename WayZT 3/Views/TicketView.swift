@@ -38,6 +38,8 @@ struct TicketView: View {
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text("Articulos del Ticket")
+                                        .font(.title2)
+                                        .bold()
                                     // Clickable list
                                     ForEach(wasteItems) { item in
                                         VStack(alignment: .leading) {
@@ -58,7 +60,7 @@ struct TicketView: View {
                                                     
                                                     // Chevron icon for expanding details
                                                     Image(systemName: expandedItem == item.id ? "chevron.up" : "chevron.down")
-                                                        .foregroundColor(.white)
+                                                        .foregroundColor(.second)
                                                 }
                                             }
 
@@ -67,12 +69,12 @@ struct TicketView: View {
                                                     ForEach(item.details, id: \.self) { detail in
                                                         Text("- \(detail)")
                                                             .font(.subheadline)
-                                                            .foregroundColor(.white)
+                                                            .foregroundColor(.second)
                                                             .padding(.leading, 10)
                                                             
                                                     }
                                                 }
-                                                .background(.white.opacity(0.08))
+                                                .background(.mainBackground.opacity(0.08))
                                                 .padding(.top, 5)
                                                 .cornerRadius(0.23)
                                             }

@@ -50,7 +50,8 @@ struct UserAchievements: View {
                                         endPoint: .bottom
                                     ))
                                     .rotationEffect(.degrees(45))
-                                    .frame(width: 20, height: 90) // Thin shine
+                                    .blur(radius: 5)
+                                    .frame(width: 20, height: 120) // Thin shine
                                     .offset(x: shineOffsets[index] ?? 100)
                                     .mask{
                                         Image("Badge\(index)")
@@ -66,14 +67,14 @@ struct UserAchievements: View {
                                 }
                                 // Shine animation happens **between** spin and reset
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                    withAnimation(.easeInOut(duration: 0.8)) {
-                                        shineOffsets[index] = -60 // Shine moves through
+                                    withAnimation(.spring(duration: 1)) {
+                                        shineOffsets[index] = -40 // Shine moves through
                                     }
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                    withAnimation(.easeInOut(duration: 0.8)) {
-                                        shineOffsets[index] = 100 // Shine moves through
+                                    withAnimation(.spring(duration: 1)) {
+                                        shineOffsets[index] = 80 // Shine moves through
                                     }
                                 }
                                 
