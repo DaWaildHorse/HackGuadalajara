@@ -43,11 +43,11 @@ struct Profile {
         profilePic = UIImage(resource: .IMG_2989)
         weekStreak = 32
         
-        RecWaste = 10
+        RecWaste = 9
         RecWasteGoal = 10
-        OrgWaste = 6
+        OrgWaste = 5
         OrgWasteGoal = 6
-        GlassWaste = 4
+        GlassWaste = 6
         GlassWasteGoal = 8
         E_Waste = 1
         E_WasteGoal = 2

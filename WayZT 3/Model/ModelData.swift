@@ -28,6 +28,13 @@ import Observation
     var showTutorial = true
     var analyzeText = true
     
+    var categories: [WasteCategory] {[
+        WasteCategory(name: "Reciclable", systemImage: "waterbottle", waste: profile.RecWaste, goal: profile.RecWasteGoal, size: 20),
+        WasteCategory(name: "Organica", systemImage: "carrot", waste: profile.OrgWaste, goal: profile.OrgWasteGoal, size: 38),
+        WasteCategory(name: "Vidrio", systemImage: "wineglass", waste: profile.GlassWaste, goal: profile.GlassWasteGoal, size: 25),
+        WasteCategory(name: "Electronicos", systemImage: "macbook.and.iphone", waste: profile.E_Waste, goal: profile.E_WasteGoal, size: 50)
+    ]}
+    
     // instantiate the core ML model
     var model  = try! VNCoreMLModel(for: WasteClassification_v3(configuration: .init()).model)
     

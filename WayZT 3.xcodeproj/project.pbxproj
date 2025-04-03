@@ -37,6 +37,7 @@
 		6220548D2D9C279A0085214A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6220546E2D9C279A0085214A /* Assets.xcassets */; };
 		6220548E2D9C279A0085214A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622054642D9C279A0085214A /* Preview Assets.xcassets */; };
 		622054FF2D9C2BAF0085214A /* NavTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622054FE2D9C2BAF0085214A /* NavTabBar.swift */; };
+		624495DD2D9DE5BE00B83340 /* ProgressBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624495DC2D9DE5BE00B83340 /* ProgressBars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		6220546F2D9C279A0085214A /* WasteClassification-v3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "WasteClassification-v3.mlmodel"; sourceTree = "<group>"; };
 		622054702D9C279A0085214A /* WayZT_3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayZT_3App.swift; sourceTree = "<group>"; };
 		622054FE2D9C2BAF0085214A /* NavTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBar.swift; sourceTree = "<group>"; };
+		624495DC2D9DE5BE00B83340 /* ProgressBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -137,6 +139,7 @@
 				622054542D9C279A0085214A /* TypeWasteButton.swift */,
 				622054552D9C279A0085214A /* WasteIdentDisplay.swift */,
 				622054FE2D9C2BAF0085214A /* NavTabBar.swift */,
+				624495DC2D9DE5BE00B83340 /* ProgressBars.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				622054852D9C279A0085214A /* TypeWasteButton.swift in Sources */,
 				622054862D9C279A0085214A /* Mapa.swift in Sources */,
 				622054882D9C279A0085214A /* SearchBar.swift in Sources */,
+				624495DD2D9DE5BE00B83340 /* ProgressBars.swift in Sources */,
 				622054892D9C279A0085214A /* WasteClassification-v3.mlmodel in Sources */,
 				6220548A2D9C279A0085214A /* Article.swift in Sources */,
 				6220548B2D9C279A0085214A /* PageModel.swift in Sources */,

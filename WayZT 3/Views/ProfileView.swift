@@ -24,6 +24,8 @@ struct ProfileView: View {
                 nameAShare()
                     .blur(radius: changePic ? 2 : 0)
                 
+                ProgressBars()
+                
                 Spacer()
             }
             .padding(.horizontal, 10)

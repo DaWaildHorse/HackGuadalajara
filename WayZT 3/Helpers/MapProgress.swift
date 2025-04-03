@@ -11,20 +11,13 @@ struct MapProgress: View {
     // MARK: - ATTRIBUTE
     var modelData: ModelData = .shared
     
-    private var wasteCategories: [WasteCategory] { [
-        WasteCategory(name: "Reciclable", systemImage: "waterbottle", waste: modelData.profile.RecWaste, goal: modelData.profile.RecWasteGoal),
-        WasteCategory(name: "Organica", systemImage: "carrot", waste: modelData.profile.OrgWaste, goal: modelData.profile.OrgWasteGoal),
-        WasteCategory(name: "Vidrio", systemImage: "wineglass", waste: modelData.profile.GlassWaste, goal: modelData.profile.GlassWasteGoal),
-        WasteCategory(name: "Electronicos", systemImage: "macbook.and.iphone", waste: modelData.profile.E_Waste, goal: modelData.profile.E_WasteGoal)
-    ] }
-    
     // MARK: - BODY
     var body: some View {
         HStack {
             WasteProgressBar()
             
             VStack {
-                ForEach(wasteCategories, id:\.self.id) { category in
+                ForEach(modelData.categories, id:\.self.id) { category in
                     HStack {
                         Text(category.name)
                             .font(.title3)
@@ -70,6 +63,7 @@ struct WasteCategory: Identifiable {
     let systemImage: String
     let waste: Int
     let goal: Int
+    var size: CGFloat = 0
 }
 
 // MARK: - PROGRESS BAR
