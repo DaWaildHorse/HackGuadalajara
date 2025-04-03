@@ -7,6 +7,10 @@
 import SwiftUI
 
 struct UserAchievements: View {
+    // MARK: - ATTRIBUTES
+    
+    
+    // MARK: - BODY
     var body: some View {
         VStack {
             Text("\t"+"Logros")
@@ -17,13 +21,12 @@ struct UserAchievements: View {
                 .padding(.bottom, 10)
 
             ZStack {
-                Rectangle()
-                    .fill(Color(.systemBackground))
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.mainBackground)
                     .frame(width: 300, height: 100)
-                    .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.accentColor, lineWidth: 2)
+                            .stroke(.accent, lineWidth: 2)
                     )
 
                 HStack(alignment: .center, spacing: 5) {
