@@ -16,7 +16,8 @@ struct ProfileView: View {
                 .transaction { $0.animation = nil }
                 .offset(y: -15)
                 .blur(radius: changePic ? 2 : 0)
-                .zIndex(1)
+                .padding(.top, 10)
+
             // Wrap the entire content in a ScrollView
             ScrollView {
                 VStack {
@@ -42,7 +43,7 @@ struct ProfileView: View {
             }
             .scrollIndicators(.hidden)
             .padding([.top, .leading, .trailing])
-            .padding(.top, 20)
+            .padding(.top, 30)
             .background {
                 Color.second.ignoresSafeArea().opacity(0.1)
                 

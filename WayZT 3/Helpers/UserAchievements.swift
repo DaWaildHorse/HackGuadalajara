@@ -8,7 +8,9 @@ import SwiftUI
 
 struct UserAchievements: View {
     // MARK: - ATTRIBUTES
-    
+    @State private var rotationAngles: [Int: Double] = [1: 0, 2: 0, 3: 0, 4: 0]
+    @State private var shineOffsets: [Int: CGFloat] = [1: 80, 2: 80, 3: 80, 4: 80] // Initial position (below badge)
+
     
     // MARK: - BODY
     var body: some View {
@@ -35,7 +37,52 @@ struct UserAchievements: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 60, height: 60)
-                            .aspectRatio(contentMode: .fit)
+                            .rotation3DEffect(.degrees(rotationAngles[index] ?? 0), axis: (x: 0, y: 1, z: 0))
+                            .scaleEffect(rotationAngles[index] != 0 ? 1.5 : 1)
+                            .overlay{
+                                // Shining effect
+                                Rectangle()
+                                    .fill(LinearGradient(
+                                        gradient: Gradient(colors: [Color.clear,
+                                                                    Color.white.opacity(0.8),
+                                                                    Color.clear]),
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    ))
+                                    .rotationEffect(.degrees(45))
+                                    .frame(width: 20, height: 90) // Thin shine
+                                    .offset(x: shineOffsets[index] ?? 100)
+                                    .mask{
+                                        Image("Badge\(index)")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 90, height: 90)
+                                    }
+                            }
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 0.8)) {
+                                    rotationAngles[index] = (rotationAngles[index] ?? 0) + 360
+
+                                }
+                                // Shine animation happens **between** spin and reset
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                    withAnimation(.easeInOut(duration: 0.8)) {
+                                        shineOffsets[index] = -60 // Shine moves through
+                                    }
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                    withAnimation(.easeInOut(duration: 0.8)) {
+                                        shineOffsets[index] = 100 // Shine moves through
+                                    }
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                    withAnimation(.easeInOut(duration: 0.8)) {
+                                        rotationAngles[index] = 0
+                                    }
+                                }
+                            }
                     }
                 }
                 .offset(y: 0) 

@@ -35,16 +35,15 @@
                  .frame(width: isExpanded ? size.width : 0)
                  
                  HStack() {
+                     Image(systemName: cat.systemImage)
+                         .resizable()
+                         .scaledToFit()
+                         .foregroundStyle(.second)
+                         .fontWeight(.semibold)
+                         .frame(width: cat.size)
+                         .frame(width: 50)
+                     
                      if isExpanded {
-                         Image(systemName: cat.systemImage)
-                             .resizable()
-                             .scaledToFit()
-                             .foregroundStyle(.second)
-                             .fontWeight(.semibold)
-                             .frame(width: cat.size)
-                             .frame(width: 50)
-                         
-                         
                          progressBar((Double(cat.waste) / Double(cat.goal) * size.width))
                      }
                  }//: VSTACK
@@ -80,7 +79,6 @@
                          Capsule()
                              .fill(.clear)
                              .padding(.horizontal, 5)
-                             .frame(height: 20)
                              .onAppear {
                                  size = proxy.size
                              }
@@ -92,6 +90,7 @@
                          .frame(width: val, height: 20)
                  }
              }
+
      }
  }
 
