@@ -16,8 +16,8 @@ struct TicketView: View {
     
     let wasteItems = [
         WasteItem(name: "Takis Fuego", isRecyclable: false, details: ["No reciclable", "Containe elementos no separables"]),
-        WasteItem(name: "Vasos Plastico", isRecyclable: true, details: ["Reciclable", "Plastico"]),
-        WasteItem(name: "Platano", isRecyclable: true, details: ["Reciclable", "Organico"])
+        WasteItem(name: "Taquito Bite Fuego", isRecyclable: true, details: ["Reciclable", "Carton"]),
+        WasteItem(name: "Platanos", isRecyclable: true, details: ["Reciclable", "Carton"]),
     ]
     
     // MARK: - BODY
@@ -69,33 +69,37 @@ struct TicketView: View {
                                                             .font(.subheadline)
                                                             .foregroundColor(.white)
                                                             .padding(.leading, 10)
+                                                            
                                                     }
                                                 }
+                                                .background(.white.opacity(0.08))
                                                 .padding(.top, 5)
+                                                .cornerRadius(0.23)
                                             }
                                         }
-                                        .padding(.vertical, 5)
+                                        .clipShape(RoundedRectangle(cornerRadius: 25))
+
                                     }
                                 }
                             }
-                            
+                            Spacer()
                             // Gauges
                             HStack {
                                 VStack {
                                     precisionGauge(value: 3.5 , color: .accent)
                                     TextPill("Reciclable", color: .green)
-                                        .offset(y: 30)
+                                        .offset(y: 5)
                                 }
                                 .offset(x: -25)
                                 
                                 VStack {
                                     precisionGauge(value: 1.12 , color: .red)
                                     TextPill("No Reciclable", color: .red)
-                                        .offset(y: 30)
+                                        .offset(y: 5)
                                 }
                                 .offset(x: 25)
                             }
-                            .offset(y: -100) // Adjusted vertical offset to bring the gauges closer
+                            .offset(y: -10) // Adjusted vertical offset to bring the gauges closer
                             .frame(maxWidth: .infinity, alignment: .center) // Ensures the gauges are centered
 
                         }
