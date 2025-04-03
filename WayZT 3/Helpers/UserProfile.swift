@@ -24,7 +24,7 @@ struct UserProfile: View {
                         HStack(spacing: 5) {
                             Image(systemName: "flame.fill")
                                 .foregroundColor(.orange)
-                            Text("235")
+                            Text("15")
                                 .foregroundColor(.second)
                                 .fontWeight(.bold)
                         }

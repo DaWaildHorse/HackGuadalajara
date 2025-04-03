@@ -20,7 +20,7 @@ struct SplashScreenView: View {
             Color(.mainBackground).ignoresSafeArea()
             
             ZStack{
-                Image("Logo")
+                Image("leafLogo")
                     .resizable()
                     .scaledToFit()
                     .opacity(ImageOpacity)

@@ -16,8 +16,8 @@ struct TicketView: View {
     
     let wasteItems = [
         WasteItem(name: "Takis Fuego", isRecyclable: false, details: ["No reciclable", "Containe elementos no separables"]),
-        WasteItem(name: "Taquito Bite Fuego", isRecyclable: true, details: ["Reciclable", "Carton"]),
-        WasteItem(name: "Platanos", isRecyclable: true, details: ["Reciclable", "Carton"]),
+        WasteItem(name: "Taquito Fuego", isRecyclable: true, details: ["Reciclable", "Carton"]),
+        WasteItem(name: "Taquito Queso", isRecyclable: true, details: ["Reciclable", "Carton"]),
     ]
     
     // MARK: - BODY
