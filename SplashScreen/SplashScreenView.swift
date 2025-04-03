@@ -20,7 +20,7 @@ struct SplashScreenView: View {
             Color(.second).ignoresSafeArea()
             
             ZStack{
-                Image("logo")
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
                     .opacity(ImageOpacity)
@@ -30,7 +30,7 @@ struct SplashScreenView: View {
             .scaleEffect(scale)
         }
         .opacity(opacity)
-        .onAppear{ //Cuando aparece el logo
+        .onAppear{
             withAnimation(.easeInOut(duration: 1.5)){
                 scale = CGSize(width: 1, height: 1)
             }

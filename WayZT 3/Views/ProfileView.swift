@@ -8,7 +8,6 @@ struct ProfileView: View {
     @State private var anim = false
     @State var changePic = false
     @State private var isPresented: Bool = false
-    
     @State private var avatarItem: PhotosPickerItem?
 
     // MARK: - BODY
@@ -16,49 +15,58 @@ struct ProfileView: View {
         ZStack(alignment: .top) {
             notiButton()
                 .transaction { $0.animation = nil }
+                .offset(y: -15)
                 .blur(radius: changePic ? 2 : 0)
-            
-            VStack {
-                profilePic()
-                
-                nameAShare()
-                    .blur(radius: changePic ? 2 : 0)
-                
-                ProgressBars()
-                
-                Spacer()
+                .background(Color(.systemBackground))
+                .zIndex(1) 
+            // Wrap the entire content in a ScrollView
+            ScrollView {
+                VStack {
+                    
+                    UserProfile()
+                        .padding(.top, 65)
+                    
+                    ProgressBars()
+                        .frame(maxWidth: 350, maxHeight: 300)
+                        .padding(.bottom, 30)
+                        .padding(.top, 40)
+                    
+                    Spacer()
+                    
+                    UserAchievements()
+                        .frame(maxWidth: 350, maxHeight: 300)
+                        .padding(.top, 30)
+                        .padding(.bottom, 40)
+
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 10)
             }
-            .padding(.horizontal, 10)
-        }
-        // MARK: - BACKGROUND
-        .background {
-            Color.second.ignoresSafeArea().opacity(0.1)
-            
-            if isPresented {
-                Image(.pine)
-                    .scaleEffect(0.8)
-                    .ignoresSafeArea()
-                    .offset(x: -160, y: 150)
-                    .transition(.offset(x: -50, y: 200))
-                    .blur(radius: changePic ? 2 : 0)
+            .background {
+                Color.second.ignoresSafeArea().opacity(0.1)
                 
-                Image(.pine)
-                    .scaleEffect(1)
-                    .ignoresSafeArea()
-                    .offset(x: 160, y: 130)
-                    .transition(.offset(x: 100, y: 300))
-                    .blur(radius: changePic ? 2 : 0)
+                if isPresented {
+                    Image(.pine)
+                        .scaleEffect(0.65)
+                        .ignoresSafeArea()
+                        .offset(x: -160, y: 150)
+                        .transition(.offset(x: -50, y: 100))
+                        .blur(radius: changePic ? 2 : 0)
+                    
+                    
+                }
+            }//: BACKGROUND
+            // MARK: - ANIMS
+            .onAppear {
+                withAnimation(.smooth(duration: 1.0)) {
+                    isPresented = true
+                }
             }
-        }//: BACKGROUND
-        // MARK: - ANIMS
-        .onAppear {
-            withAnimation(.smooth(duration: 1.0)) {
-                isPresented = true
+            .onDisappear{
+                changePic = false
+                isPresented = false
             }
-        }
-        .onDisappear{
-            changePic = false
-            isPresented = false
         }
     }
     
@@ -76,12 +84,12 @@ struct ProfileView: View {
             Image(uiImage: modelData.profile.profilePic)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 180, height: 180)
+                .frame(width: 130, height: 130)
                 .clipShape(Circle())
                 .background(
                     Circle()
                         .fill(.accent)
-                        .frame(width: 185, height: 185)
+                        .frame(width: 130, height: 130)
                 )
                 .scaleEffect(x: changePic ? 1.1 : 1, y: changePic ? 1.1 : 1)
                 .onLongPressGesture(minimumDuration: 0.5) {
@@ -108,6 +116,7 @@ struct ProfileView: View {
                         }
                     }
         }
+        
     }
     
     // MARK: - TOP BAR
@@ -138,12 +147,39 @@ struct ProfileView: View {
     
     // MARK: - USERNAME
     func nameAShare() -> some View {
-        HStack {
+        VStack {
             Text(modelData.profile.username)
                 .font(.title)
                 .bold()
                 .foregroundStyle(.second)
                 .offset(y: -10)
+        
+            HStack{
+                Image(systemName: "flame.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25)
+                    .foregroundStyle(.orange)
+                
+                Text("27.7")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(.second)
+            }
+            .padding(.bottom, 20)
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25)
+                    .foregroundStyle(.second)
+                
+                Text("27.7")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(.second)
+            }
+            
+            precisionGauge(value: 27.7, color: .second)
             Button {
                 
             } label: {
@@ -154,8 +190,39 @@ struct ProfileView: View {
                     .foregroundStyle(.accent)
                     .offset(y: -15)
             }
+            
         }
     }
+    
+    func precisionGauge(value: Float, color: Color) -> some View {
+        ZStack {
+            Gauge(value: value, in: 0...16) {
+                Image(systemName: "heart.fill")
+                    .foregroundColor(.red)
+            } currentValueLabel: {
+                Text(String(format: "%.2f", value))
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            } minimumValueLabel: {
+                Text("Kg")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            } maximumValueLabel: {
+                Text("CO")
+                    .fontWeight(.heavy)
+                    .foregroundStyle(color)
+            }
+            .scaleEffect(1.5)
+            .frame(height: 100)  // Increased height to make the gauge more visible
+            .gaugeStyle(AccessoryCircularGaugeStyle())
+            .tint(color) // This line changes the color of the gauge ring
+        }
+    }
+    
+    func addFriends(){
+        
+    }
+    
 }
 
 #Preview {

@@ -36,7 +36,7 @@ struct Profile {
     var E_WasteGoal: Int
     var hisE_Waste: Int
     
-    static let `default` = Profile(username: "UltiimateDog")
+    static let `default` = Profile(username: "Alan Doe")
     
     init(username: String) {
         self.username = username

@@ -17,7 +17,7 @@ struct PageView: View {
             return "Leafs"
             //leafs_2 no funciona
         case 2:
-            return "Leafs"
+            return "Leafs_2"
         default:
             return "Pine"
         }

@@ -1,61 +1,3 @@
-import SwiftUI
-
-struct ProgressBars: View {
-    // MARK: - ATTRIBUTES
-    var modelData: ModelData = .shared
-    @State private var progressWidths: [UUID: CGFloat] = [:] // Track progress bar widths
-
-    // MARK: - BODY
-    var body: some View {
-        VStack(spacing: 10) {
-            ForEach(modelData.categories) { cat in
-                Text(cat.name)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.secondary)
-
-                HStack {
-                    Image(systemName: cat.systemImage)
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.secondary)
-                        .frame(width: 50)
-
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(Color(.systemGray6))
-
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(.indigo.gradient)
-                            .frame(width: progressWidths[cat.id] ?? 0, alignment: .leading)
-                    }
-                    .frame(width: 250, height: 12)
-                    .onAppear {
-                        // Ensure a smooth animation from 0
-                        progressWidths[cat.id] = 0
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            withAnimation(.easeInOut(duration: 1)) {
-                                progressWidths[cat.id] = 250 * (CGFloat(cat.waste) / CGFloat(cat.goal))
-                            }
-                        }
-                    }
-                }
-                .frame(height: 50)
-            }
-        }
-        .padding()
-        .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-    }
-}
-
-#Preview {
-    ProgressBars()
-}
-
-
-
-
-/*
  //
  //  ProgressBars.swift
  //  WayZT 3
@@ -74,6 +16,14 @@ struct ProgressBars: View {
      // MARK: - BODY
      var body: some View {
          VStack(spacing: 0) {
+             
+             Text("Reciclaje")
+                 .font(.title)
+                 .foregroundColor(Color(.label))
+                 .bold()
+                 .frame(maxWidth: .infinity, alignment: .leading)
+                 .padding(.bottom, 10)
+             
              ForEach(modelData.categories) { cat in
                  Text(cat.name)
                      .fontWeight(.semibold)
@@ -99,7 +49,7 @@ struct ProgressBars: View {
          .background(
              .thinMaterial
          )
-         .clipShape(RoundedRectangle(cornerRadius: 15))
+         .clipShape(RoundedRectangle(cornerRadius: 20))
          .onAppear{
              DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                  withAnimation(.bouncy(duration: 1)) {
@@ -115,16 +65,16 @@ struct ProgressBars: View {
      // MARK: - CUSTOM PROGRESS BAR
      private func progressBar(_ val: Double) -> some View {
          Capsule()
-             .stroke(lineWidth: 3)
-             .fill(.accent)
-             .frame(height: 40)
+             .stroke(lineWidth: 1)
+             .fill(Color.second)
+             .frame(height: 28)
              .overlay {
                  ZStack(alignment: .leading) {
                      GeometryReader { proxy in
                          Capsule()
                              .fill(.clear)
                              .padding(.horizontal, 5)
-                             .frame(height: 30)
+                             .frame(height: 20)
                              .onAppear {
                                  size = proxy.size
                              }
@@ -133,12 +83,12 @@ struct ProgressBars: View {
                      Capsule()
                          .fill(.accent)
                          .padding(.horizontal, 5)
-                         .frame(height: 30)
+                         .frame(height: 25)
                          .mask {
                              Capsule()
                                  .fill(.accent)
                                  .padding(.horizontal, 5)
-                                 .frame(height: 30)
+                                 .frame(height: 15)
                                  .offset(x: val)
                                  .transition(.move(edge: .leading))
                          }
@@ -151,4 +101,4 @@ struct ProgressBars: View {
      ProgressBars()
  }
  
- */
+ 
